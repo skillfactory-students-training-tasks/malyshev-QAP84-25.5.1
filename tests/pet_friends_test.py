@@ -33,11 +33,9 @@ class TestPetFriends:
         for i in range(len(pets)):                        # берем все текстовые значения в таблице
             pets_list = pets[i].text.upper().split('\n')  # переводим все в верхний регистр для удобства поиска
         pets_list = pets_list[1::2]  # срезаем нужные, оставляя только имя, породу, возраст питомцев
-        assert int(pets_numbers) == int(len(pets_list))  # проверяем что присутствуют все питомцы
-        for i in range(len(images)):
+        for i in range(len(images)):  # цикл считает количество питомцев без фото
             if images[i].get_attribute('src') == '':
                 counter += 1
-        assert (round(((counter * 100) / int(pets_numbers)))) <= 50  # проверяем количество фото у питомцев в процентах
         for pet in pets_list:
             assert len(pet.split(' ')) == 3  # в цикле проверяем что у каждого питомца заполнены все три поля
             pet_names.append(pet.split(' ')[0])
@@ -45,8 +43,11 @@ class TestPetFriends:
                 continue
             else:
                 pet_uniq.append(pet)
+        assert int(pets_numbers) == int(len(pets_list))  # проверяем что присутствуют все питомцы
+        assert (round(((counter * 100) / int(pets_numbers)))) <= 50  # проверяем количество фото у питомцев в процентах
         assert len(pet_names) == len(set(pet_names))  # проверяем одинаковые имена
         assert pets_list == pet_uniq  # проверяем что нет повторяющихся питомцев
+
 
 
 
