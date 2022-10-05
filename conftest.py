@@ -66,8 +66,8 @@ def browser(request):
         if headless == 'true':
             options.add_argument('headless')
 
-        service = Service("C:\web_drivers\chromedriver_104\chromedriver.exe")
-        options.binary_location = "C:/Users/d0nny113/AppData/Local/Yandex/YandexBrowser/Application/browser.exe"
+        service = Service("ПУТЬ К ХРОМ ДРАЙВЕРУ ТАКОЙ ЖЕ ВЕРСИИ КАК В ЯНДЕКС БРАУЗЕРЕ")
+        options.binary_location = "ПУТЬ К ЯНДЕКС БРАУЗЕРУ"
 
         # // Отключение сообщений в консоли типа: USB: usb_device_handle...
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
