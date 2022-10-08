@@ -24,7 +24,7 @@ class TestPetFriends:
         assert WebDriverWait(browser, 6).until(EC.url_to_be('https://petfriends.skillfactory.ru/my_pets'))
         assert WebDriverWait(browser, 60).until(EC.presence_of_element_located((By.XPATH, '//h2'))).text == self.name
         browser.implicitly_wait(10)
-        pets_numbers = browser.find_element(By.XPATH, '//body/div[1]/div[1]/div[1]').text.split()[2]
+        pets_numb = browser.find_element(By.XPATH, '//div[@class=".col-sm-4 left"]').text.split('\n')[1].split(":")[1]
         pets = browser.find_elements(By.XPATH, '//div[@id="all_my_pets"]')
         images = browser.find_elements(By.CSS_SELECTOR, 'img')
         counter = 0
@@ -43,8 +43,8 @@ class TestPetFriends:
                 continue
             else:
                 pet_uniq.append(pet)
-        assert int(pets_numbers) == int(len(pets_list))  # проверяем что присутствуют все питомцы
-        assert (round(((counter * 100) / int(pets_numbers)))) <= 50  # проверяем количество фото у питомцев в процентах
+        assert int(pets_numb) == int(len(pets_list))  # проверяем что присутствуют все питомцы
+        assert (round(((counter * 100) / int(pets_numb)))) <= 50  # проверяем количество фото у питомцев в процентах
         assert len(pet_names) == len(set(pet_names))  # проверяем одинаковые имена
         assert pets_list == pet_uniq  # проверяем что нет повторяющихся питомцев
 
